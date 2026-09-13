@@ -1,0 +1,19 @@
+# Este bloco de "models" existe para satisfazer a validação de schema do
+# NeMo Guardrails. O client de fato usado é construído explicitamente em
+# projeto/app.py (ChatOpenAI apontado para o OpenRouter) e passado via
+# LLMRails(config, llm=...) — necessário porque o engine "openai" só troca
+# para ChatOpenAI automaticamente quando o nome do modelo começa com
+# "gpt-3.5"/"gpt-4" (ver nemoguardrails.llm.providers.get_llm_provider).
+models:
+  - type: main
+    engine: openai
+    model: openai/gpt-oss-20b:free
+
+rails:
+  input:
+    flows:
+      - self check input
+      - detect prompt injection
+  output:
+    flows:
+      - self check output

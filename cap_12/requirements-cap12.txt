@@ -1,0 +1,12 @@
+# cap_12 — Módulo 13: Segurança e Guardrails Avançados
+# nemoguardrails 0.9.1.1 exige langchain<0.3.0 — não é possível usar o
+# langchain==0.3.7 do resto do livro neste capítulo específico.
+flask==3.0.3
+openai==1.55.0
+nemoguardrails[openai]==0.9.1.1
+langchain==0.2.17
+langchain-openai==0.1.25
+requests==2.31.0
+python-dotenv==1.0.1
+pytest==7.4.4
+pytest-mock==3.15.1

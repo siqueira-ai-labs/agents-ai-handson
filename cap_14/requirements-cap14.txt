@@ -1,0 +1,11 @@
+# cap_14 — Módulo 15: Gerenciamento de Estado Distribuído em Produção
+langgraph==0.2.50
+langchain-openai==0.2.14
+langchain-ollama==0.2.0
+langgraph-checkpoint-postgres==2.0.7
+psycopg2-binary==2.9.10
+redis==5.1.1
+python-dotenv==1.0.1
+pytest==7.4.4
+pytest-mock==3.15.1
+fakeredis==2.37.0

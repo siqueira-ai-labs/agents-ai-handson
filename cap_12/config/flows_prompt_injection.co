@@ -1,0 +1,8 @@
+define bot refuse prompt injection
+  "Não posso seguir essa instrução."
+
+define flow detect prompt injection
+  $result = execute check_prompt_injection
+  if not $result["safe"]
+    bot refuse prompt injection
+    stop

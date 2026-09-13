@@ -1,0 +1,32 @@
+# cap_13 — Módulo 14: Fine-Tuning vs. RAG
+# Fine-tuning local (requer GPU NVIDIA)
+transformers==4.44.2
+peft==0.13.0
+# bitsandbytes==0.44.1 importa triton.ops internamente, removido nas
+# versões atuais do triton (que o torch mais recente já traz) — quebra o
+# import mesmo sem usar quantização. Deixado sem pin de versão exata porque
+# a combinação torch/triton/bitsandbytes compatível depende de CUDA/GPU do
+# leitor; teste com `python -c "import bitsandbytes"` após instalar.
+bitsandbytes>=0.45
+datasets==2.21.0
+accelerate==0.34.2
+trl==0.11.4
+rich>=13.0.0
+
+# Fine-tuning via API OpenAI (sem GPU)
+openai==1.55.0
+# openai==1.55.0 quebra com httpx>=0.28 (removeu o kwarg `proxies` que o
+# client dessa versão do SDK ainda usa) — fixar httpx<0.28.
+httpx==0.27.2
+
+# Pipeline RAG de referência (comparação com fine-tuning)
+langchain==0.3.7
+langchain-community==0.3.7
+langchain-openai==0.2.14
+langchain-huggingface==0.1.2
+sentence-transformers==5.7.0
+faiss-cpu==1.15.0
+
+python-dotenv==1.0.1
+pytest==7.4.4
+pytest-mock==3.15.1
