@@ -29,7 +29,7 @@ apendice-e-llms-opensource/ ← Apêndice E: LLMs Open-Source na Prática
 Cada `cap_NN/` contém:
 - `requirements-cap_NN.txt` — dependências pinadas
 - `projeto/` — código do projeto principal do capítulo
-- `exercicios/` — esqueletos dos exercícios (ex01, ex02, ex03)
+- `exercicios/` — esqueletos dos exercícios (ex01, ex02, ex03) e suas respectivas soluções
 - `local/` — alternativa 100% local via Ollama (onde disponível)
 
 ## Início Rápido
@@ -48,10 +48,7 @@ pip install -r cap_01/requirements-cap01.txt
 
 ## Gabaritos
 
-Os gabaritos dos exercícios ficam na branch `solutions/`:
-```bash
-git checkout solutions/
-```
+Os gabaritos dos exercícios ficam na própria pasta com sufixo `_solucao.pu`:
 
 ## Provider LLM
 
