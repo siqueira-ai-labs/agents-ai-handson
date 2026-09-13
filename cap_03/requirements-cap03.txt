@@ -1,0 +1,7 @@
+# cap_03 — Módulo 4: LangChain e LCEL na Prática
+langchain==0.3.7
+langchain-openai==0.2.14
+langchain-community==0.3.5
+langchain-core==0.3.15
+pydantic==2.9.2
+python-dotenv==1.0.1

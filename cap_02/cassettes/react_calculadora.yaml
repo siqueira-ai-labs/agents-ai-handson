@@ -1,0 +1,90 @@
+interactions:
+- request:
+    body: '{"messages": [{"content": "Quanto \u00e9 a raiz quadrada de 144 multiplicada
+      por 7?", "role": "user"}], "model": "openai/gpt-oss-20b:free", "n": 1, "stream":
+      false, "temperature": 0.0, "tools": [{"type": "function", "function": {"name":
+      "tavily_search_results_json", "description": "A search engine optimized for
+      comprehensive, accurate, and trusted results. Useful for when you need to answer
+      questions about current events. Input should be a search query.", "parameters":
+      {"properties": {"query": {"description": "search query to look up", "type":
+      "string"}}, "required": ["query"], "type": "object"}}}, {"type": "function",
+      "function": {"name": "calculator", "description": "Avalia uma express\u00e3o
+      matem\u00e1tica de forma segura.", "parameters": {"properties": {"expression":
+      {"type": "string"}}, "required": ["expression"], "type": "object"}}}]}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '794'
+      content-type:
+      - application/json
+      host:
+      - openrouter.ai
+      user-agent:
+      - OpenAI/Python 1.109.1
+      x-stainless-arch:
+      - x64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - Linux
+      x-stainless-package-version:
+      - 1.109.1
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.3
+    method: POST
+    uri: https://openrouter.ai/api/v1/chat/completions
+  response:
+    body:
+      string: "\n         \n\n         \n\n         \n\n         \n\n         \n{\"id\":\"gen-1782229017-nxVyug3PmFsUJ291ZcSt\",\"object\":\"chat.completion\",\"created\":1782229017,\"model\":\"openai/gpt-oss-20b:free\",\"provider\":\"Darkbloom\",\"system_fingerprint\":null,\"service_tier\":null,\"choices\":[{\"index\":0,\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"stop\",\"message\":{\"role\":\"assistant\",\"content\":\"A
+        raiz quadrada de 144 \xE9 12, e 12 multiplicado por 7 d\xE1 **84**.\",\"refusal\":null,\"reasoning\":\"The
+        user asks: \\\"Quanto \xE9 a raiz quadrada de 144 multiplicada por 7?\\\"
+        That is Portuguese: \\\"What is the square root of 144 multiplied by 7?\\\"
+        So sqrt(144) = 12. 12 * 7 = 84. So answer: 84. Probably just answer. No need
+        for search.\",\"reasoning_details\":[{\"type\":\"reasoning.text\",\"text\":\"The
+        user asks: \\\"Quanto \xE9 a raiz quadrada de 144 multiplicada por 7?\\\"
+        That is Portuguese: \\\"What is the square root of 144 multiplied by 7?\\\"
+        So sqrt(144) = 12. 12 * 7 = 84. So answer: 84. Probably just answer. No need
+        for search.\",\"format\":\"unknown\",\"index\":0}]}}],\"usage\":{\"prompt_tokens\":195,\"completion_tokens\":104,\"total_tokens\":299,\"cost\":0,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":0.0000101075,\"upstream_inference_prompt_cost\":0.0000028275,\"upstream_inference_completions_cost\":0.00000728},\"completion_tokens_details\":{\"reasoning_tokens\":71,\"image_tokens\":0,\"audio_tokens\":0}}}"
+    headers:
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - X-Generation-Id,cf-ray
+      cf-ray:
+      - a104923dda25aee5-REC
+      connection:
+      - keep-alive
+      content-length:
+      - '1469'
+      content-type:
+      - application/json
+      date:
+      - Tue, 23 Jun 2026 15:36:58 GMT
+      permissions-policy:
+      - payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com"
+        "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")
+      referrer-policy:
+      - no-referrer, strict-origin-when-cross-origin
+      server:
+      - cloudflare
+      transfer-encoding:
+      - chunked
+      x-content-type-options:
+      - nosniff
+      x-generation-id:
+      - gen-1782229017-nxVyug3PmFsUJ291ZcSt
+    status:
+      code: 200
+      message: OK
+version: 1

@@ -1,0 +1,13 @@
+produto_id,produto,categoria,preco_unitario,estoque_atual,estoque_minimo,fornecedor,ativo
+P001,Notebook Pro 15,Eletrônicos,4500.00,45,10,TechBrazil SA,sim
+P002,Mouse Ergonômico,Periféricos,150.00,200,30,PeriTech,sim
+P003,Teclado Mecânico,Periféricos,380.00,150,20,PeriTech,sim
+P004,Monitor 27",Monitores,2200.00,35,8,VisualPro,sim
+P005,Headset Gamer,Áudio,650.00,80,15,AudioMax,sim
+P006,Webcam HD,Periféricos,320.00,60,12,PeriTech,sim
+P007,SSD 1TB,Armazenamento,480.00,120,25,StoragePro,sim
+P008,Impressora Laser,Impressão,1800.00,20,5,PrintMaster,sim
+P009,Roteador Wi-Fi 6,Redes,900.00,55,10,NetConnect,sim
+P010,Cadeira Gamer,Mobiliário,2800.00,30,5,ErgoComfort,sim
+P011,Hub USB-C 7 portas,Periféricos,280.00,0,15,PeriTech,não
+P012,Suporte para Monitor,Mobiliário,180.00,0,10,ErgoComfort,não

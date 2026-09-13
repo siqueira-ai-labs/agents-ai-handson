@@ -1,0 +1,11 @@
+# cap_02 — Módulo 3: Arquiteturas e Padrões de Design
+langchain==0.3.7
+langchain-community==0.3.7
+langchain-openai==0.2.14
+langgraph==0.2.50
+tavily-python==0.5.0
+simpleeval==1.0.7
+python-dotenv==1.0.1
+pytest==7.4.4
+pytest-mock==3.15.1
+vcrpy==8.2.1

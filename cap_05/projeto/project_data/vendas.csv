@@ -1,0 +1,56 @@
+data,produto_id,produto,categoria,quantidade,preco_unitario,total,vendedor,regiao
+2024-01-05,P001,Notebook Pro 15,Eletrônicos,12,4500.00,54000.00,Ana Silva,Sudeste
+2024-01-10,P002,Mouse Ergonômico,Periféricos,45,150.00,6750.00,Carlos Lima,Sul
+2024-01-15,P003,Teclado Mecânico,Periféricos,30,380.00,11400.00,Ana Silva,Sudeste
+2024-01-20,P004,Monitor 27",Monitores,8,2200.00,17600.00,João Costa,Centro-Oeste
+2024-01-25,P005,Headset Gamer,Áudio,20,650.00,13000.00,Maria Souza,Nordeste
+2024-02-03,P001,Notebook Pro 15,Eletrônicos,15,4500.00,67500.00,Carlos Lima,Sul
+2024-02-08,P002,Mouse Ergonômico,Periféricos,60,150.00,9000.00,Ana Silva,Sudeste
+2024-02-12,P006,Webcam HD,Periféricos,25,320.00,8000.00,João Costa,Centro-Oeste
+2024-02-18,P003,Teclado Mecânico,Periféricos,18,380.00,6840.00,Maria Souza,Nordeste
+2024-02-22,P007,SSD 1TB,Armazenamento,40,480.00,19200.00,Ana Silva,Sudeste
+2024-03-05,P004,Monitor 27",Monitores,12,2200.00,26400.00,Carlos Lima,Sul
+2024-03-10,P005,Headset Gamer,Áudio,35,650.00,22750.00,João Costa,Centro-Oeste
+2024-03-15,P008,Impressora Laser,Impressão,6,1800.00,10800.00,Ana Silva,Sudeste
+2024-03-20,P001,Notebook Pro 15,Eletrônicos,10,4500.00,45000.00,Maria Souza,Nordeste
+2024-03-28,P007,SSD 1TB,Armazenamento,55,480.00,26400.00,Carlos Lima,Sul
+2024-04-04,P002,Mouse Ergonômico,Periféricos,80,150.00,12000.00,Ana Silva,Sudeste
+2024-04-09,P006,Webcam HD,Periféricos,30,320.00,9600.00,João Costa,Centro-Oeste
+2024-04-14,P003,Teclado Mecânico,Periféricos,22,380.00,8360.00,Maria Souza,Nordeste
+2024-04-20,P009,Roteador Wi-Fi 6,Redes,15,900.00,13500.00,Carlos Lima,Sul
+2024-04-25,P005,Headset Gamer,Áudio,28,650.00,18200.00,Ana Silva,Sudeste
+2024-05-03,P001,Notebook Pro 15,Eletrônicos,20,4500.00,90000.00,João Costa,Centro-Oeste
+2024-05-08,P007,SSD 1TB,Armazenamento,45,480.00,21600.00,Maria Souza,Nordeste
+2024-05-15,P004,Monitor 27",Monitores,18,2200.00,39600.00,Ana Silva,Sudeste
+2024-05-22,P002,Mouse Ergonômico,Periféricos,70,150.00,10500.00,Carlos Lima,Sul
+2024-05-28,P008,Impressora Laser,Impressão,4,1800.00,7200.00,João Costa,Centro-Oeste
+2024-06-05,P010,Cadeira Gamer,Mobiliário,10,2800.00,28000.00,Ana Silva,Sudeste
+2024-06-12,P003,Teclado Mecânico,Periféricos,35,380.00,13300.00,Maria Souza,Nordeste
+2024-06-18,P009,Roteador Wi-Fi 6,Redes,22,900.00,19800.00,Carlos Lima,Sul
+2024-06-25,P005,Headset Gamer,Áudio,42,650.00,27300.00,Ana Silva,Sudeste
+2024-07-02,P001,Notebook Pro 15,Eletrônicos,18,4500.00,81000.00,João Costa,Centro-Oeste
+2024-07-09,P007,SSD 1TB,Armazenamento,60,480.00,28800.00,Carlos Lima,Sul
+2024-07-16,P004,Monitor 27",Monitores,14,2200.00,30800.00,Ana Silva,Sudeste
+2024-07-23,P010,Cadeira Gamer,Mobiliário,8,2800.00,22400.00,Maria Souza,Nordeste
+2024-07-30,P006,Webcam HD,Periféricos,40,320.00,12800.00,João Costa,Centro-Oeste
+2024-08-06,P002,Mouse Ergonômico,Periféricos,90,150.00,13500.00,Ana Silva,Sudeste
+2024-08-13,P008,Impressora Laser,Impressão,7,1800.00,12600.00,Carlos Lima,Sul
+2024-08-20,P003,Teclado Mecânico,Periféricos,28,380.00,10640.00,Maria Souza,Nordeste
+2024-08-27,P009,Roteador Wi-Fi 6,Redes,18,900.00,16200.00,Ana Silva,Sudeste
+2024-09-03,P005,Headset Gamer,Áudio,50,650.00,32500.00,João Costa,Centro-Oeste
+2024-09-10,P001,Notebook Pro 15,Eletrônicos,25,4500.00,112500.00,Carlos Lima,Sul
+2024-09-17,P007,SSD 1TB,Armazenamento,70,480.00,33600.00,Ana Silva,Sudeste
+2024-09-24,P010,Cadeira Gamer,Mobiliário,12,2800.00,33600.00,Maria Souza,Nordeste
+2024-10-01,P004,Monitor 27",Monitores,20,2200.00,44000.00,João Costa,Centro-Oeste
+2024-10-08,P002,Mouse Ergonômico,Periféricos,100,150.00,15000.00,Ana Silva,Sudeste
+2024-10-15,P006,Webcam HD,Periféricos,35,320.00,11200.00,Carlos Lima,Sul
+2024-10-22,P008,Impressora Laser,Impressão,5,1800.00,9000.00,Maria Souza,Nordeste
+2024-10-29,P003,Teclado Mecânico,Periféricos,40,380.00,15200.00,Ana Silva,Sudeste
+2024-11-05,P009,Roteador Wi-Fi 6,Redes,30,900.00,27000.00,João Costa,Centro-Oeste
+2024-11-12,P001,Notebook Pro 15,Eletrônicos,30,4500.00,135000.00,Carlos Lima,Sul
+2024-11-19,P005,Headset Gamer,Áudio,60,650.00,39000.00,Ana Silva,Sudeste
+2024-11-26,P010,Cadeira Gamer,Mobiliário,15,2800.00,42000.00,Maria Souza,Nordeste
+2024-12-03,P007,SSD 1TB,Armazenamento,80,480.00,38400.00,João Costa,Centro-Oeste
+2024-12-10,P004,Monitor 27",Monitores,25,2200.00,55000.00,Ana Silva,Sudeste
+2024-12-17,P002,Mouse Ergonômico,Periféricos,120,150.00,18000.00,Carlos Lima,Sul
+2024-12-24,P001,Notebook Pro 15,Eletrônicos,35,4500.00,157500.00,Maria Souza,Nordeste

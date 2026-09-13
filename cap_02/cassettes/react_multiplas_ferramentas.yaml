@@ -1,0 +1,355 @@
+interactions:
+- request:
+    body: '{"messages": [{"content": "Pesquise quantos par\u00e2metros tem o GPT-4
+      e calcule 1% desse n\u00famero.", "role": "user"}], "model": "openai/gpt-oss-20b:free",
+      "n": 1, "stream": false, "temperature": 0.0, "tools": [{"type": "function",
+      "function": {"name": "tavily_search_results_json", "description": "A search
+      engine optimized for comprehensive, accurate, and trusted results. Useful for
+      when you need to answer questions about current events. Input should be a search
+      query.", "parameters": {"properties": {"query": {"description": "search query
+      to look up", "type": "string"}}, "required": ["query"], "type": "object"}}},
+      {"type": "function", "function": {"name": "calculator", "description": "Avalia
+      uma express\u00e3o matem\u00e1tica de forma segura.", "parameters": {"properties":
+      {"expression": {"type": "string"}}, "required": ["expression"], "type": "object"}}}]}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '810'
+      content-type:
+      - application/json
+      host:
+      - openrouter.ai
+      user-agent:
+      - OpenAI/Python 1.109.1
+      x-stainless-arch:
+      - x64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - Linux
+      x-stainless-package-version:
+      - 1.109.1
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.3
+    method: POST
+    uri: https://openrouter.ai/api/v1/chat/completions
+  response:
+    body:
+      string: "\n         \n\n         \n\n         \n\n         \n\n         \n\n
+        \        \n{\"id\":\"gen-1782229019-d512VWinb86ju82uuyCh\",\"object\":\"chat.completion\",\"created\":1782229019,\"model\":\"openai/gpt-oss-20b:free\",\"provider\":\"Darkbloom\",\"system_fingerprint\":null,\"service_tier\":null,\"choices\":[{\"index\":0,\"logprobs\":null,\"finish_reason\":\"tool_calls\",\"native_finish_reason\":\"tool_calls\",\"message\":{\"role\":\"assistant\",\"content\":null,\"refusal\":null,\"reasoning\":\"The
+        user wants to search how many parameters GPT-4 has and calculate 1% of that
+        number. We need to search. Use tavily_search_results_json.\",\"tool_calls\":[{\"type\":\"function\",\"index\":0,\"id\":\"call_C965B51627084147A534B682\",\"function\":{\"name\":\"tavily_search_results_json\",\"arguments\":\"{\\\"query\\\":\\\"GPT-4
+        parameters count\\\"}\"}}],\"reasoning_details\":[{\"type\":\"reasoning.text\",\"text\":\"The
+        user wants to search how many parameters GPT-4 has and calculate 1% of that
+        number. We need to search. Use tavily_search_results_json.\",\"format\":\"unknown\",\"index\":0}]}}],\"usage\":{\"prompt_tokens\":199,\"completion_tokens\":64,\"total_tokens\":263,\"cost\":0,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":0.0000073655,\"upstream_inference_prompt_cost\":0.0000028855,\"upstream_inference_completions_cost\":0.00000448},\"completion_tokens_details\":{\"reasoning_tokens\":33,\"image_tokens\":0,\"audio_tokens\":0}}}"
+    headers:
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - X-Generation-Id,cf-ray
+      cf-ray:
+      - a104924cb862aee5-REC
+      connection:
+      - keep-alive
+      content-length:
+      - '1424'
+      content-type:
+      - application/json
+      date:
+      - Tue, 23 Jun 2026 15:37:00 GMT
+      permissions-policy:
+      - payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com"
+        "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")
+      referrer-policy:
+      - no-referrer, strict-origin-when-cross-origin
+      server:
+      - cloudflare
+      transfer-encoding:
+      - chunked
+      x-content-type-options:
+      - nosniff
+      x-generation-id:
+      - gen-1782229019-d512VWinb86ju82uuyCh
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"query": "GPT-4 parameters count", "max_results": 3, "search_depth": "advanced",
+      "include_domains": [], "exclude_domains": [], "include_answer": false, "include_raw_content":
+      false, "include_images": false}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '280'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.34.2
+    method: POST
+    uri: https://api.tavily.com/search
+  response:
+    body:
+      string: "{\"query\":\"GPT-4 parameters count\",\"follow_up_questions\":null,\"answer\":null,\"images\":[],\"results\":[{\"url\":\"https://explodingtopics.com/blog/gpt-parameters\",\"title\":\"Number
+        of Parameters in GPT-4 (Latest Data)\",\"content\":\"In June 2023, just a
+        few months after GPT-4 was released, Hotz publicly explained that GPT-4 was
+        comprised of roughly 1.8 trillion parameters. More specifically, the architecture
+        consisted of eight models, with each internal model made up of 220 billion
+        parameters.\\n\\nGPT4 is 8 x 220B params = 1.7 Trillion params   \\n  \\nok
+        I wasn't sure how widely to spread the rumors on GPT-4 but it seems Soumith
+        is also confirming the same so here's the quick clip!   \\n  \\nso yes, GPT4
+        is technically 10x the size of GPT3, and all the small\u2026 pic.twitter.com/m2YiaHGVs4\\n\\nWhile
+        this has not been confirmed by OpenAI, the 1.8 trillion parameter claim has
+        been supported by multiple sources. [...] While these estimates vary somewhat,
+        they all agree on one thing: GPT-4 is massive. It\u2019s far larger than previous
+        models and many competitors.\\n\\nHowever, more parameters doesn\u2019t necessarily
+        mean better.\\n\\nIn this article, we\u2019ll explore the details of the parameters
+        within GPT-4 and GPT-4o.\\n\\n### Key Parameters Stats (Top Picks)\\n\\n###
+        Instantly Analyze Any Market\\n\\n### Number of Parameters in ChatGPT-4\\n\\nAccording
+        to multiple sources, ChatGPT-4 has approximately 1.8 trillion parameters.\\n\\nThis
+        estimate first came from AI experts like George Hotz, who is also known for
+        being the first person to crack the iPhone. [...] Shortly after Hotz made
+        his estimation, a report by Semianalysis reached the same conclusion. More
+        recently, a graph displayed at Nvidia\u2019s GTC24 seemed to support the 1.8
+        trillion figure.\\n\\nAnd back in June 2023, Meta engineer Soumith Chintala
+        confirmed Hotz\u2019s description, tweeting:\\n\\n\u201CI might have heard
+        the same \u2026 info like this is passed around but no one wants to say it
+        out loud. GPT-4: 8 x 220B experts trained with different data/task distributions
+        and 16-inter inference.\u201D\\n\\nSo, we can assert with reasonable confidence
+        that GPT-4 has 1.76 trillion parameters. But what exactly does the breakdown
+        \u2014 eight experts of 220 billion parameters, or 16 of 110 billion \u2014
+        mean?\\n\\n### Evolution of ChatGPT Parameters\\n\\n#### ChatGPT-4 has 10x
+        the parameters of GPT-3 (OpenAI)\",\"score\":0.9161773,\"raw_content\":null},{\"url\":\"https://aiexpjourney.substack.com/p/the-number-of-parameters-of-gpt-4o\",\"title\":\"The
+        Number of Parameters of GPT-4o and Claude 3.5 Sonnet\",\"content\":\"AI Exploration
+        Journey\\n\\n# AI Exploration Journey\\n\\n# The Number of Parameters of GPT-4o
+        and Claude 3.5 Sonnet\\n\\nFlorian's avatar\\n\\nRecently, I saw a paper from
+        Microsoft that surprisingly revealed the parameter counts for models such
+        as GPT-4o and Claude 3.5 Sonnet.\\n\\nFrom Figure 2, we can get a glimpse
+        of the details.\\n\\nAI Exploration Journey is a reader-supported publication.
+        To receive new posts and support my work, consider becoming a subscriber.\\n\\nAccording
+        to Figure 2, we can see that GPT-4o contains approximately 200 billion parameters,
+        while GPT-4o-mini has about 8 billion parameters. Claude 3.5 Sonnet operates
+        with roughly 175 billion parameters.\\n\\nChatGPT uses approximately 175 billion
+        parameters, while GPT-4 is significantly larger with about 1.76 trillion parameters.\",\"score\":0.9067276,\"raw_content\":null},{\"url\":\"https://www.lesswrong.com/posts/kywRXvv2mhkyfPD84/gpt-4-specs-1-trillion-parameters\",\"title\":\"GPT-4
+        Specs: 1 Trillion Parameters? - LessWrong\",\"content\":\"GPT-3 had 175 Billion
+        parameters. I've seen a few references online to some interview where Sam
+        Altman said GPT-4 actually has fewer parameters than GPT-3 but different architecture
+        and more training. I can't find the original source so I can't verify that
+        quote, but assuming that's true, that gives us a lower bound of slightly smaller
+        than GPT-3's 175 Billion parameters.  \\n  \\nLooking at the compute architecture
+        that it's running on, an upper bound of 343 billion parameters seems reasonable.
+        [...] GPT-4 was trained on OpenAI's new supercomputer which is composed of
+        [edit] NVIDIA DGX A100 nodes.   \\n  \\nI'm assuming each individual instance
+        of GPT-4 runs on one DGX A100 node.   \\n  \\nEach DGX node has 8x A100 GPUs.
+        Each A100 can have either 40 or 80GB vram. So a single DGX node running GPT-4
+        has either 320 or 640 GB. That can allow us to calculate an upper limit to
+        the number of parameters in a single GPT-4 instance.  \\n  \\nAssuming GPT-4
+        uses float16 to represent parameters (same as GPT-3), and assuming they're
+        using the 80GB A100s, that gives us an upper limit of 343 billion parameters
+        in one GPT-4 instance. [...] Another quote from the paper:\\n\\n\\\"Unless
+        one has a compute budget of 1026 FLOPs (over 250\xD7 the compute used to train
+        Gopher), a 1 trillion parameter model is unlikely to be the optimal model
+        to train.\\\"\\n\\nSo unless the EpochAI estimate is too low by about an order
+        of magnitude (#fn125dcuy17199) or OpenAI has discovered new and better scaling
+        laws, the number of parameters in GPT-4 is probably lower than 1 trillion.\\n\\nMy
+        Twitter thread estimating the number of parameters in GPT-4.\\n\\nI don't
+        think it is but it could be.\\n\\n# 6\\n\\nRelevant Manifold Market:\",\"score\":0.882276,\"raw_content\":null}],\"response_time\":1.67,\"request_id\":\"dd9f4ce5-c9c1-46bc-8a49-2ba1523989ea\"}"
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '5348'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 23 Jun 2026 15:37:04 GMT
+      content-security-policy:
+      - default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self';
+        style-src 'self';base-uri 'self';form-action 'self'; require-trusted-types-for
+        'script'; upgrade-insecure-requests;
+    status:
+      code: 200
+      message: OK
+- request:
+    body: '{"messages": [{"content": "Pesquise quantos par\u00e2metros tem o GPT-4
+      e calcule 1% desse n\u00famero.", "role": "user"}, {"content": null, "role":
+      "assistant", "tool_calls": [{"type": "function", "id": "call_C965B51627084147A534B682",
+      "function": {"name": "tavily_search_results_json", "arguments": "{\"query\":
+      \"GPT-4 parameters count\"}"}}]}, {"content": "[{\"url\": \"https://explodingtopics.com/blog/gpt-parameters\",
+      \"content\": \"In June 2023, just a few months after GPT-4 was released, Hotz
+      publicly explained that GPT-4 was comprised of roughly 1.8 trillion parameters.
+      More specifically, the architecture consisted of eight models, with each internal
+      model made up of 220 billion parameters.\\n\\nGPT4 is 8 x 220B params = 1.7
+      Trillion params   \\n  \\nok I wasn''t sure how widely to spread the rumors
+      on GPT-4 but it seems Soumith is also confirming the same so here''s the quick
+      clip!   \\n  \\nso yes, GPT4 is technically 10x the size of GPT3, and all the
+      small\u2026 pic.twitter.com/m2YiaHGVs4\\n\\nWhile this has not been confirmed
+      by OpenAI, the 1.8 trillion parameter claim has been supported by multiple sources.
+      [...] While these estimates vary somewhat, they all agree on one thing: GPT-4
+      is massive. It\u2019s far larger than previous models and many competitors.\\n\\nHowever,
+      more parameters doesn\u2019t necessarily mean better.\\n\\nIn this article,
+      we\u2019ll explore the details of the parameters within GPT-4 and GPT-4o.\\n\\n###
+      Key Parameters Stats (Top Picks)\\n\\n### Instantly Analyze Any Market\\n\\n###
+      Number of Parameters in ChatGPT-4\\n\\nAccording to multiple sources, ChatGPT-4
+      has approximately 1.8 trillion parameters.\\n\\nThis estimate first came from
+      AI experts like George Hotz, who is also known for being the first person to
+      crack the iPhone. [...] Shortly after Hotz made his estimation, a report by
+      Semianalysis reached the same conclusion. More recently, a graph displayed at
+      Nvidia\u2019s GTC24 seemed to support the 1.8 trillion figure.\\n\\nAnd back
+      in June 2023, Meta engineer Soumith Chintala confirmed Hotz\u2019s description,
+      tweeting:\\n\\n\u201cI might have heard the same \u2026 info like this is passed
+      around but no one wants to say it out loud. GPT-4: 8 x 220B experts trained
+      with different data/task distributions and 16-inter inference.\u201d\\n\\nSo,
+      we can assert with reasonable confidence that GPT-4 has 1.76 trillion parameters.
+      But what exactly does the breakdown \u2014 eight experts of 220 billion parameters,
+      or 16 of 110 billion \u2014 mean?\\n\\n### Evolution of ChatGPT Parameters\\n\\n####
+      ChatGPT-4 has 10x the parameters of GPT-3 (OpenAI)\"}, {\"url\": \"https://aiexpjourney.substack.com/p/the-number-of-parameters-of-gpt-4o\",
+      \"content\": \"AI Exploration Journey\\n\\n# AI Exploration Journey\\n\\n# The
+      Number of Parameters of GPT-4o and Claude 3.5 Sonnet\\n\\nFlorian''s avatar\\n\\nRecently,
+      I saw a paper from Microsoft that surprisingly revealed the parameter counts
+      for models such as GPT-4o and Claude 3.5 Sonnet.\\n\\nFrom Figure 2, we can
+      get a glimpse of the details.\\n\\nAI Exploration Journey is a reader-supported
+      publication. To receive new posts and support my work, consider becoming a subscriber.\\n\\nAccording
+      to Figure 2, we can see that GPT-4o contains approximately 200 billion parameters,
+      while GPT-4o-mini has about 8 billion parameters. Claude 3.5 Sonnet operates
+      with roughly 175 billion parameters.\\n\\nChatGPT uses approximately 175 billion
+      parameters, while GPT-4 is significantly larger with about 1.76 trillion parameters.\"},
+      {\"url\": \"https://www.lesswrong.com/posts/kywRXvv2mhkyfPD84/gpt-4-specs-1-trillion-parameters\",
+      \"content\": \"GPT-3 had 175 Billion parameters. I''ve seen a few references
+      online to some interview where Sam Altman said GPT-4 actually has fewer parameters
+      than GPT-3 but different architecture and more training. I can''t find the original
+      source so I can''t verify that quote, but assuming that''s true, that gives
+      us a lower bound of slightly smaller than GPT-3''s 175 Billion parameters.  \\n  \\nLooking
+      at the compute architecture that it''s running on, an upper bound of 343 billion
+      parameters seems reasonable. [...] GPT-4 was trained on OpenAI''s new supercomputer
+      which is composed of [edit] NVIDIA DGX A100 nodes.   \\n  \\nI''m assuming each
+      individual instance of GPT-4 runs on one DGX A100 node.   \\n  \\nEach DGX node
+      has 8x A100 GPUs. Each A100 can have either 40 or 80GB vram. So a single DGX
+      node running GPT-4 has either 320 or 640 GB. That can allow us to calculate
+      an upper limit to the number of parameters in a single GPT-4 instance.  \\n  \\nAssuming
+      GPT-4 uses float16 to represent parameters (same as GPT-3), and assuming they''re
+      using the 80GB A100s, that gives us an upper limit of 343 billion parameters
+      in one GPT-4 instance. [...] Another quote from the paper:\\n\\n\\\"Unless one
+      has a compute budget of 1026 FLOPs (over 250\u00d7 the compute used to train
+      Gopher), a 1 trillion parameter model is unlikely to be the optimal model to
+      train.\\\"\\n\\nSo unless the EpochAI estimate is too low by about an order
+      of magnitude (#fn125dcuy17199) or OpenAI has discovered new and better scaling
+      laws, the number of parameters in GPT-4 is probably lower than 1 trillion.\\n\\nMy
+      Twitter thread estimating the number of parameters in GPT-4.\\n\\nI don''t think
+      it is but it could be.\\n\\n# 6\\n\\nRelevant Manifold Market:\"}]", "role":
+      "tool", "tool_call_id": "call_C965B51627084147A534B682"}], "model": "openai/gpt-oss-20b:free",
+      "n": 1, "stream": false, "temperature": 0.0, "tools": [{"type": "function",
+      "function": {"name": "tavily_search_results_json", "description": "A search
+      engine optimized for comprehensive, accurate, and trusted results. Useful for
+      when you need to answer questions about current events. Input should be a search
+      query.", "parameters": {"properties": {"query": {"description": "search query
+      to look up", "type": "string"}}, "required": ["query"], "type": "object"}}},
+      {"type": "function", "function": {"name": "calculator", "description": "Avalia
+      uma express\u00e3o matem\u00e1tica de forma segura.", "parameters": {"properties":
+      {"expression": {"type": "string"}}, "required": ["expression"], "type": "object"}}}]}'
+    headers:
+      accept:
+      - application/json
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      content-length:
+      - '6092'
+      content-type:
+      - application/json
+      host:
+      - openrouter.ai
+      user-agent:
+      - OpenAI/Python 1.109.1
+      x-stainless-arch:
+      - x64
+      x-stainless-async:
+      - 'false'
+      x-stainless-lang:
+      - python
+      x-stainless-os:
+      - Linux
+      x-stainless-package-version:
+      - 1.109.1
+      x-stainless-retry-count:
+      - '0'
+      x-stainless-runtime:
+      - CPython
+      x-stainless-runtime-version:
+      - 3.12.3
+    method: POST
+    uri: https://openrouter.ai/api/v1/chat/completions
+  response:
+    body:
+      string: "\n         \n\n         \n\n         \n\n         \n\n         \n\n
+        \        \n\n         \n\n         \n\n         \n\n         \n\n         \n\n
+        \        \n\n         \n\n         \n\n         \n\n         \n\n         \n{\"id\":\"gen-1782229026-JBgE4hDIMIFDpMwMmL4C\",\"object\":\"chat.completion\",\"created\":1782229026,\"model\":\"openai/gpt-oss-20b:free\",\"provider\":\"Darkbloom\",\"system_fingerprint\":null,\"service_tier\":null,\"choices\":[{\"index\":0,\"logprobs\":null,\"finish_reason\":\"stop\",\"native_finish_reason\":\"stop\",\"message\":{\"role\":\"assistant\",\"content\":\"**N\xFAmero
+        de par\xE2metros do GPT\u20114**\\n\\nDe acordo com v\xE1rias fontes confi\xE1veis
+        (por exemplo, estimativas de especialistas como George\u202FHotz e Soumith\u202FChintala,
+        al\xE9m de relat\xF3rios de an\xE1lise de mercado), o GPT\u20114 possui **aproximadamente
+        1,8 trilh\xE3o de par\xE2metros**.\\n\\n**C\xE1lculo de 1\u202F% desse n\xFAmero**\\n\\n\\\\[\\n1\\\\%
+        \\\\text{ de } 1{,}8 \\\\text{ trilh\xE3o} = 0{,}01 \\\\times 1{,}8 \\\\text{
+        trilh\xE3o}\\n\\\\]\\n\\n\\\\[\\n= 0{,}018 \\\\text{ trilh\xE3o}\\n\\\\]\\n\\n\\\\[\\n=
+        18 \\\\text{ bilh\xF5es de par\xE2metros}\\n\\\\]\\n\\nPortanto, **1\u202F%
+        dos par\xE2metros do GPT\u20114 corresponde a cerca de 18\u202Fbilh\xF5es
+        de par\xE2metros**.\",\"refusal\":null,\"reasoning\":\"We need to answer:
+        \\\"Pesquise quantos par\xE2metros tem o GPT-4 e calcule 1% desse n\xFAmero.\\\"
+        So we need to search for number of parameters of GPT-4. The search results
+        show 1.8 trillion parameters. We need to calculate 1% of that. 1% of 1.8 trillion
+        = 0.018 trillion = 18 billion. Actually 1% of 1.8 trillion = 0.018 trillion
+        = 18 billion. Provide answer in Portuguese. Also mention source. Use the search
+        result. Provide calculation.\",\"reasoning_details\":[{\"type\":\"reasoning.text\",\"text\":\"We
+        need to answer: \\\"Pesquise quantos par\xE2metros tem o GPT-4 e calcule 1%
+        desse n\xFAmero.\\\" So we need to search for number of parameters of GPT-4.
+        The search results show 1.8 trillion parameters. We need to calculate 1% of
+        that. 1% of 1.8 trillion = 0.018 trillion = 18 billion. Actually 1% of 1.8
+        trillion = 0.018 trillion = 18 billion. Provide answer in Portuguese. Also
+        mention source. Use the search result. Provide calculation.\",\"format\":\"unknown\",\"index\":0}]}}],\"usage\":{\"prompt_tokens\":1568,\"completion_tokens\":310,\"total_tokens\":1878,\"cost\":0,\"is_byok\":false,\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"cost_details\":{\"upstream_inference_cost\":0.000044436,\"upstream_inference_prompt_cost\":0.000022736,\"upstream_inference_completions_cost\":0.0000217},\"completion_tokens_details\":{\"reasoning_tokens\":118,\"image_tokens\":0,\"audio_tokens\":0}}}"
+    headers:
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - X-Generation-Id,cf-ray
+      cf-ray:
+      - a104926b6e0baee5-REC
+      connection:
+      - keep-alive
+      content-length:
+      - '2545'
+      content-type:
+      - application/json
+      date:
+      - Tue, 23 Jun 2026 15:37:08 GMT
+      permissions-policy:
+      - payment=(self "https://checkout.stripe.com" "https://connect-js.stripe.com"
+        "https://js.stripe.com" "https://*.js.stripe.com" "https://hooks.stripe.com")
+      referrer-policy:
+      - no-referrer, strict-origin-when-cross-origin
+      server:
+      - cloudflare
+      transfer-encoding:
+      - chunked
+      x-content-type-options:
+      - nosniff
+      x-generation-id:
+      - gen-1782229026-JBgE4hDIMIFDpMwMmL4C
+    status:
+      code: 200
+      message: OK
+version: 1

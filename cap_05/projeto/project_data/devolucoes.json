@@ -1,0 +1,22 @@
+[
+  {"devolucao_id": "D001", "data": "2024-01-18", "produto_id": "P001", "produto": "Notebook Pro 15", "quantidade": 1, "motivo": "defeito de fábrica", "vendedor": "Ana Silva", "regiao": "Sudeste", "status": "reembolsado"},
+  {"devolucao_id": "D002", "data": "2024-01-25", "produto_id": "P002", "produto": "Mouse Ergonômico", "quantidade": 3, "motivo": "produto não corresponde ao descrito", "vendedor": "Carlos Lima", "regiao": "Sul", "status": "reembolsado"},
+  {"devolucao_id": "D003", "data": "2024-02-10", "produto_id": "P005", "produto": "Headset Gamer", "quantidade": 2, "motivo": "qualidade de áudio inferior ao esperado", "vendedor": "Maria Souza", "regiao": "Nordeste", "status": "reembolsado"},
+  {"devolucao_id": "D004", "data": "2024-02-20", "produto_id": "P003", "produto": "Teclado Mecânico", "quantidade": 2, "motivo": "teclas com defeito", "vendedor": "Ana Silva", "regiao": "Sudeste", "status": "troca"},
+  {"devolucao_id": "D005", "data": "2024-03-08", "produto_id": "P004", "produto": "Monitor 27\"", "quantidade": 1, "motivo": "pixels defeituosos", "vendedor": "Carlos Lima", "regiao": "Sul", "status": "reembolsado"},
+  {"devolucao_id": "D006", "data": "2024-03-22", "produto_id": "P002", "produto": "Mouse Ergonômico", "quantidade": 5, "motivo": "botão com defeito", "vendedor": "João Costa", "regiao": "Centro-Oeste", "status": "reembolsado"},
+  {"devolucao_id": "D007", "data": "2024-04-15", "produto_id": "P007", "produto": "SSD 1TB", "quantidade": 2, "motivo": "velocidade abaixo do especificado", "vendedor": "Ana Silva", "regiao": "Sudeste", "status": "troca"},
+  {"devolucao_id": "D008", "data": "2024-04-28", "produto_id": "P005", "produto": "Headset Gamer", "quantidade": 3, "motivo": "microfone com ruído", "vendedor": "Carlos Lima", "regiao": "Sul", "status": "reembolsado"},
+  {"devolucao_id": "D009", "data": "2024-05-12", "produto_id": "P001", "produto": "Notebook Pro 15", "quantidade": 1, "motivo": "bateria não retém carga", "vendedor": "Maria Souza", "regiao": "Nordeste", "status": "reembolsado"},
+  {"devolucao_id": "D010", "data": "2024-05-30", "produto_id": "P008", "produto": "Impressora Laser", "quantidade": 1, "motivo": "papel encrenca frequentemente", "vendedor": "João Costa", "regiao": "Centro-Oeste", "status": "troca"},
+  {"devolucao_id": "D011", "data": "2024-06-14", "produto_id": "P002", "produto": "Mouse Ergonômico", "quantidade": 4, "motivo": "scroll com falha", "vendedor": "Ana Silva", "regiao": "Sudeste", "status": "reembolsado"},
+  {"devolucao_id": "D012", "data": "2024-06-28", "produto_id": "P009", "produto": "Roteador Wi-Fi 6", "quantidade": 2, "motivo": "sinal instável", "vendedor": "Carlos Lima", "regiao": "Sul", "status": "troca"},
+  {"devolucao_id": "D013", "data": "2024-07-18", "produto_id": "P005", "produto": "Headset Gamer", "quantidade": 4, "motivo": "cabo com falha de contato", "vendedor": "Ana Silva", "regiao": "Sudeste", "status": "reembolsado"},
+  {"devolucao_id": "D014", "data": "2024-08-05", "produto_id": "P003", "produto": "Teclado Mecânico", "quantidade": 3, "motivo": "retroiluminação irregular", "vendedor": "Maria Souza", "regiao": "Nordeste", "status": "troca"},
+  {"devolucao_id": "D015", "data": "2024-08-22", "produto_id": "P007", "produto": "SSD 1TB", "quantidade": 2, "motivo": "reconhecimento intermitente", "vendedor": "João Costa", "regiao": "Centro-Oeste", "status": "reembolsado"},
+  {"devolucao_id": "D016", "data": "2024-09-10", "produto_id": "P002", "produto": "Mouse Ergonômico", "quantidade": 6, "motivo": "clique duplo involuntário", "vendedor": "Ana Silva", "regiao": "Sudeste", "status": "reembolsado"},
+  {"devolucao_id": "D017", "data": "2024-09-25", "produto_id": "P010", "produto": "Cadeira Gamer", "quantidade": 1, "motivo": "encosto com defeito", "vendedor": "Carlos Lima", "regiao": "Sul", "status": "troca"},
+  {"devolucao_id": "D018", "data": "2024-10-14", "produto_id": "P004", "produto": "Monitor 27\"", "quantidade": 2, "motivo": "brilho irregular", "vendedor": "João Costa", "regiao": "Centro-Oeste", "status": "reembolsado"},
+  {"devolucao_id": "D019", "data": "2024-11-08", "produto_id": "P005", "produto": "Headset Gamer", "quantidade": 5, "motivo": "cancelamento de ruído falhou", "vendedor": "Ana Silva", "regiao": "Sudeste", "status": "reembolsado"},
+  {"devolucao_id": "D020", "data": "2024-12-05", "produto_id": "P001", "produto": "Notebook Pro 15", "quantidade": 2, "motivo": "sobreaquecimento", "vendedor": "Maria Souza", "regiao": "Nordeste", "status": "reembolsado"}
+]

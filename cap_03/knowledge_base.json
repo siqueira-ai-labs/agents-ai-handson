@@ -1,0 +1,26 @@
+[
+  {
+    "tarefa": "ordenar uma lista de dicionários por uma chave específica",
+    "codigo": "def sort_dicts(items: list, key: str, reverse: bool = False) -> list:\n    \"\"\"Ordena lista de dicts pela chave informada.\"\"\"\n    return sorted(items, key=lambda x: x[key], reverse=reverse)\n"
+  },
+  {
+    "tarefa": "calcular o n-ésimo número de Fibonacci com memoização",
+    "codigo": "from functools import lru_cache\n\n@lru_cache(maxsize=None)\ndef fibonacci(n: int) -> int:\n    \"\"\"Retorna o n-ésimo número de Fibonacci usando memoização.\"\"\"\n    if n <= 1:\n        return n\n    return fibonacci(n - 1) + fibonacci(n - 2)\n"
+  },
+  {
+    "tarefa": "criar um decorator que mede o tempo de execução de uma função",
+    "codigo": "import time\nfrom functools import wraps\n\ndef timeit(func):\n    \"\"\"Decorator que registra o tempo de execução da função.\"\"\"\n    @wraps(func)\n    def wrapper(*args, **kwargs):\n        start = time.perf_counter()\n        result = func(*args, **kwargs)\n        elapsed = time.perf_counter() - start\n        print(f'{func.__name__} executou em {elapsed:.4f}s')\n        return result\n    return wrapper\n"
+  },
+  {
+    "tarefa": "implementar um gerenciador de contexto para conexão com banco de dados",
+    "codigo": "from contextlib import contextmanager\nimport sqlite3\n\n@contextmanager\ndef get_db_connection(path: str):\n    \"\"\"Gerenciador de contexto que abre e fecha conexão SQLite.\"\"\"\n    conn = sqlite3.connect(path)\n    try:\n        yield conn\n        conn.commit()\n    except Exception:\n        conn.rollback()\n        raise\n    finally:\n        conn.close()\n"
+  },
+  {
+    "tarefa": "fazer uma requisição HTTP assíncrona com aiohttp",
+    "codigo": "import asyncio\nimport aiohttp\n\nasync def fetch_json(url: str) -> dict:\n    \"\"\"Busca JSON de uma URL de forma assíncrona.\"\"\"\n    async with aiohttp.ClientSession() as session:\n        async with session.get(url) as response:\n            response.raise_for_status()\n            return await response.json()\n\ndef get_json(url: str) -> dict:\n    return asyncio.run(fetch_json(url))\n"
+  },
+  {
+    "tarefa": "implementar uma fila de prioridade usando heapq",
+    "codigo": "import heapq\nfrom dataclasses import dataclass, field\nfrom typing import Any\n\n@dataclass(order=True)\nclass PriorityItem:\n    priority: int\n    item: Any = field(compare=False)\n\nclass PriorityQueue:\n    \"\"\"Fila de prioridade min-heap.\"\"\"\n    def __init__(self):\n        self._heap = []\n\n    def push(self, item: Any, priority: int):\n        heapq.heappush(self._heap, PriorityItem(priority, item))\n\n    def pop(self) -> Any:\n        return heapq.heappop(self._heap).item\n\n    def __len__(self):\n        return len(self._heap)\n"
+  }
+]
