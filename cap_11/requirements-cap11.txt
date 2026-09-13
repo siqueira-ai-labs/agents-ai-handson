@@ -1,0 +1,13 @@
+# cap_11 — Módulo 12: Avaliação de Agentes (Agent Evaluation)
+ragas==0.2.15
+datasets==2.21.0
+langchain==0.3.7
+langchain-community==0.3.7
+langchain-openai==0.2.14
+langchain-huggingface==0.1.2
+sentence-transformers==5.7.0
+faiss-cpu==1.15.0
+pydantic==2.9.2
+python-dotenv==1.0.1
+pytest==7.4.4
+pytest-mock==3.15.1

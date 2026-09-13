@@ -1,0 +1,15 @@
+# cap_10 — Módulo 11: Agentes No-Code/Low-Code
+# Plataformas visuais — sem dependências Python principais
+# Para o webhook receiver e integração via código:
+requests==2.31.0
+python-dotenv==1.0.1
+flask==3.0.3
+pytest==7.4.4
+pytest-mock==3.15.1
+
+# Langflow (self-hosted, opcional)
+# docker run -d --name langflow_rag -p 7860:7860 \
+#   -e LANGFLOW_SUPERUSER=admin \
+#   -e LANGFLOW_SUPERUSER_PASSWORD=admin123456 \
+#   -e LANGFLOW_AUTO_LOGIN=false \
+#   langflowai/langflow:latest

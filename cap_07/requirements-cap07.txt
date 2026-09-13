@@ -1,0 +1,13 @@
+# cap_07 — Módulo 8: Sistemas Multiagente com LangGraph e CrewAI
+langchain==0.3.7
+langchain-openai==0.2.14
+langgraph==0.2.50
+beautifulsoup4==4.12.3
+crewai==0.86.0
+crewai-tools==0.17.0
+# crewai 0.86.0 importa pkg_resources em runtime (telemetry); setuptools >=81
+# removeu pkg_resources, então é preciso fixar uma versão mais antiga.
+setuptools<81
+duckduckgo-search==6.3.5
+yfinance==0.2.50
+python-dotenv==1.0.1

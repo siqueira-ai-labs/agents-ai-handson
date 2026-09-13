@@ -1,0 +1,7 @@
+# cap_08 — Módulo 9: Desenvolvimento Avançado com Autogen
+autogen-agentchat==0.4.9.2
+autogen-ext[openai]==0.4.9.2
+python-dotenv==1.0.1
+pytest==7.4.4
+pytest-asyncio==0.23.8
+pytest-mock==3.15.1

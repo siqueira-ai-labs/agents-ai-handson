@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Langflow — Fluxo de Atendimento RAG (cap_10)</title>
+<style>
+:root{
+  --bg:#f4f5f0;
+  --surface:#ffffff;
+  --surface-2:#eceee6;
+  --ink:#14181a;
+  --ink-soft:#4d555a;
+  --ink-faint:#818a86;
+  --line:#d3d7cd;
+  --line-strong:#b7bcb0;
+  --accent:#0e6f63;
+  --accent-ink:#0a4e45;
+  --accent-soft:#dcede9;
+  --tweak:#a85a17;
+  --tweak-soft:#f3e3cf;
+  --font-head:ui-sans-serif,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-body:ui-sans-serif,system-ui,"Segoe UI",Roboto,Arial,sans-serif;
+  --font-mono:ui-monospace,"Cascadia Code","SFMono-Regular","Roboto Mono",Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#12151a;
+    --surface:#1a1e24;
+    --surface-2:#20252b;
+    --ink:#e7eae5;
+    --ink-soft:#a9b0ab;
+    --ink-faint:#767e79;
+    --line:#2c333a;
+    --line-strong:#3c454d;
+    --accent:#4fc3b2;
+    --accent-ink:#8fe0d3;
+    --accent-soft:rgba(79,195,178,0.12);
+    --tweak:#e0a05a;
+    --tweak-soft:rgba(224,160,90,0.14);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#12151a; --surface:#1a1e24; --surface-2:#20252b; --ink:#e7eae5; --ink-soft:#a9b0ab;
+  --ink-faint:#767e79; --line:#2c333a; --line-strong:#3c454d; --accent:#4fc3b2; --accent-ink:#8fe0d3;
+  --accent-soft:rgba(79,195,178,0.12); --tweak:#e0a05a; --tweak-soft:rgba(224,160,90,0.14);
+}
+:root[data-theme="light"]{
+  --bg:#f4f5f0; --surface:#ffffff; --surface-2:#eceee6; --ink:#14181a; --ink-soft:#4d555a;
+  --ink-faint:#818a86; --line:#d3d7cd; --line-strong:#b7bcb0; --accent:#0e6f63; --accent-ink:#0a4e45;
+  --accent-soft:#dcede9; --tweak:#a85a17; --tweak-soft:#f3e3cf;
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--font-body);
+  line-height:1.55;
+}
+.page{
+  max-width:1180px;
+  margin:0 auto;
+  padding:56px 28px 80px;
+}
+header.top{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-bottom:36px;
+  border-bottom:1px solid var(--line);
+  padding-bottom:28px;
+}
+.eyebrow{
+  font-family:var(--font-mono);
+  font-size:12.5px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--accent-ink);
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block;}
+h1{
+  font-family:var(--font-head);
+  font-size:clamp(28px,3.4vw,40px);
+  font-weight:700;
+  letter-spacing:-0.01em;
+  margin:0;
+  text-wrap:balance;
+}
+.dek{
+  max-width:70ch;
+  color:var(--ink-soft);
+  font-size:16px;
+  margin:2px 0 0;
+}
+.dek code{font-family:var(--font-mono);font-size:0.92em;background:var(--surface-2);padding:1px 5px;border-radius:4px;}
+
+.figure-wrap{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:20px 20px 8px;
+  margin-bottom:14px;
+}
+.figure-wrap svg{width:100%;height:auto;display:block;}
+figcaption{
+  font-size:13.5px;
+  color:var(--ink-soft);
+  padding:14px 4px 18px;
+  border-top:1px solid var(--line);
+  margin-top:10px;
+}
+figcaption b{color:var(--ink);font-weight:600;}
+
+.legend-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:18px;
+  font-family:var(--font-mono);
+  font-size:12px;
+  color:var(--ink-soft);
+  margin:0 0 40px;
+  padding:0 4px;
+}
+.legend-row span{display:inline-flex;align-items:center;gap:6px;}
+.swatch{width:14px;height:3px;border-radius:2px;display:inline-block;}
+.swatch.solid{background:var(--accent);}
+.swatch.dashed{background:repeating-linear-gradient(90deg,var(--ink-faint) 0 4px,transparent 4px 7px);}
+.swatch.tweak{background:var(--tweak);}
+
+section{margin:44px 0;}
+h2{
+  font-family:var(--font-head);
+  font-size:20px;
+  font-weight:700;
+  margin:0 0 14px;
+  letter-spacing:-0.01em;
+}
+h2 .idx{color:var(--ink-faint);font-weight:600;margin-right:8px;font-family:var(--font-mono);font-size:0.8em;}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:14px;
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:10px;
+  overflow:hidden;
+}
+th,td{
+  text-align:left;
+  padding:10px 14px;
+  border-bottom:1px solid var(--line);
+  vertical-align:top;
+}
+th{
+  font-family:var(--font-mono);
+  font-size:11.5px;
+  text-transform:uppercase;
+  letter-spacing:0.05em;
+  color:var(--ink-faint);
+  background:var(--surface-2);
+  font-weight:600;
+}
+tr:last-child td{border-bottom:none;}
+td.mono, code{font-family:var(--font-mono);font-size:12.8px;}
+td.tag{white-space:nowrap;}
+.pill{
+  display:inline-block;
+  font-family:var(--font-mono);
+  font-size:10.5px;
+  padding:2px 7px;
+  border-radius:20px;
+  letter-spacing:0.04em;
+}
+.pill.tweak{background:var(--tweak-soft);color:var(--tweak);border:1px solid color-mix(in srgb, var(--tweak) 40%, transparent);}
+.pill.flow{background:var(--accent-soft);color:var(--accent-ink);border:1px solid color-mix(in srgb, var(--accent) 35%, transparent);}
+
+.table-scroll{overflow-x:auto;}
+
+pre{
+  background:var(--surface-2);
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:16px 18px;
+  overflow-x:auto;
+  font-family:var(--font-mono);
+  font-size:12.8px;
+  line-height:1.6;
+  color:var(--ink);
+}
+pre .k{color:var(--accent-ink);}
+pre .s{color:var(--tweak);}
+
+ol.steps{
+  margin:0;
+  padding-left:22px;
+  font-size:14.5px;
+  color:var(--ink-soft);
+}
+ol.steps li{margin-bottom:8px;}
+ol.steps b{color:var(--ink);}
+ol.steps code{font-family:var(--font-mono);font-size:0.9em;background:var(--surface-2);padding:1px 5px;border-radius:4px;color:var(--ink);}
+
+footer{
+  margin-top:60px;
+  padding-top:20px;
+  border-top:1px solid var(--line);
+  font-size:12.5px;
+  color:var(--ink-faint);
+  font-family:var(--font-mono);
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="top">
+  <div class="eyebrow"><span class="dot"></span>cap_10 · Módulo 11 · Langflow (Low-Code)</div>
+  <h1>Fluxo de Atendimento RAG</h1>
+  <p class="dek">Referência para montar o fluxo que <code>projeto/nocode_integration.py</code> chama via
+  <code>POST /api/v1/run/{FLOW_ID}</code>, e para exportar como <code>cap_10/langflow_rag_flow.json</code>.
+  Cobre os dois caminhos que o fluxo precisa ter: a indexação da base de FAQ (offline) e a conversa em si (runtime).</p>
+</header>
+
+<section>
+  <h2><span class="idx">01</span>O mecanismo</h2>
+  <div class="figure-wrap">
+    <figure style="margin:0;">
+      <svg viewBox="0 0 1550 580" role="img" aria-label="Diagrama do fluxo Langflow: uma indexação offline (Read File, Split Text com chunk_size 3000, Embedding Model via Google Generative AI) alimenta o componente Chroma DB; em runtime, Chat Input envia a mensagem como query ao Chroma DB e como pergunta original ao Prompt Template, o Chroma DB devolve os resultados a um Parser que extrai o campo text (não content) de cada um, o Parser manda o texto pro Prompt Template, o Prompt Template monta o texto final para o Language Model (ou o componente dedicado OpenRouter), e o modelo responde ao Chat Output. Todo o fluxo roda dentro de um servidor Langflow chamado externamente por nocode_integration.py via POST /api/v1/run e por um health check GET /health.">
+        <defs>
+          <marker id="arrowFlow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <polygon points="0,0 10,5 0,10" fill="var(--accent)"></polygon>
+          </marker>
+          <marker id="arrowMuted" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+            <polygon points="0,0 10,5 0,10" fill="var(--ink-faint)"></polygon>
+          </marker>
+        </defs>
+
+        <!-- container boundary -->
+        <rect x="160" y="60" width="1180" height="450" rx="18" fill="none" stroke="var(--line-strong)" stroke-width="1.5" stroke-dasharray="3 5"></rect>
+        <text x="182" y="86" font-family="var(--font-mono)" font-size="12" fill="var(--ink-faint)" letter-spacing="0.03em">LANGFLOW · flow &#96;FLOW_ID&#96; · docker :7860</text>
+
+        <!-- health check annotation -->
+        <rect x="580" y="8" width="340" height="34" rx="8" fill="var(--surface)" stroke="var(--line)"></rect>
+        <text x="750" y="29" text-anchor="middle" font-family="var(--font-mono)" font-size="11" fill="var(--ink-soft)">ex03: is_langflow_healthy() — GET /health</text>
+        <path d="M750,42 L750,58" stroke="var(--ink-faint)" stroke-width="1.5" marker-end="url(#arrowMuted)"></path>
+
+        <!-- indexing caption -->
+        <text x="280" y="130" font-family="var(--font-mono)" font-size="11" fill="var(--ink-faint)" letter-spacing="0.04em">INDEXAÇÃO — RODA UMA VEZ, OFFLINE</text>
+
+        <!-- indexing nodes -->
+        <g>
+          <rect x="280" y="140" width="110" height="60" rx="9" fill="var(--surface)" stroke="var(--line)" stroke-width="1.3"></rect>
+          <text x="335" y="164" text-anchor="middle" font-family="var(--font-head)" font-size="12.5" font-weight="600" fill="var(--ink)">Read File</text>
+          <text x="335" y="180" text-anchor="middle" font-family="var(--font-mono)" font-size="10" fill="var(--ink-faint)">faq_atendimento.md</text>
+        </g>
+        <path d="M390,170 L408,170" stroke="var(--ink-faint)" stroke-width="1.5" marker-end="url(#arrowMuted)"></path>
+
+        <g>
+          <rect x="410" y="140" width="140" height="60" rx="9" fill="var(--surface)" stroke="var(--line)" stroke-width="1.3"></rect>
+          <text x="480" y="164" text-anchor="middle" font-family="var(--font-head)" font-size="12.5" font-weight="600" fill="var(--ink)">Split Text</text>
+          <text x="480" y="180" text-anchor="middle" font-family="var(--font-mono)" font-size="10" fill="var(--ink-faint)">3000 / overlap 200</text>
+        </g>
+        <path d="M550,170 L568,170" stroke="var(--ink-faint)" stroke-width="1.5" marker-end="url(#arrowMuted)"></path>
+
+        <g>
+          <rect x="570" y="140" width="150" height="60" rx="9" fill="var(--surface)" stroke="var(--line)" stroke-width="1.3"></rect>
+          <text x="645" y="160" text-anchor="middle" font-family="var(--font-head)" font-size="12.5" font-weight="600" fill="var(--ink)">Embedding Model</text>
+          <text x="645" y="177" text-anchor="middle" font-family="var(--font-mono)" font-size="9.5" fill="var(--ink-faint)">Google · gemini-embedding-2</text>
+        </g>
+
+        <!-- elbow: embedding -> chroma db (top) -->
+        <polyline points="645,200 645,250 465,250 465,298" fill="none" stroke="var(--ink-faint)" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#arrowMuted)"></polyline>
+        <text x="555" y="244" text-anchor="middle" font-family="var(--font-mono)" font-size="10" fill="var(--ink-faint)">grava (write)</text>
+
+        <!-- runtime row -->
+        <!-- Chat Input (tweak) -->
+        <rect x="200" y="300" width="150" height="76" rx="10" fill="var(--surface)" stroke="var(--tweak)" stroke-width="2"></rect>
+        <rect x="200" y="300" width="5" height="76" fill="var(--tweak)"></rect>
+        <text x="336" y="313" text-anchor="end" font-family="var(--font-mono)" font-size="9.5" fill="var(--tweak)" letter-spacing="0.03em">TWEAK</text>
+        <text x="278" y="335" text-anchor="middle" font-family="var(--font-head)" font-size="13.5" font-weight="700" fill="var(--ink)">Chat Input</text>
+        <text x="278" y="352" text-anchor="middle" font-family="var(--font-mono)" font-size="10.5" fill="var(--ink-soft)">input_value</text>
+        <text x="278" y="366" text-anchor="middle" font-family="var(--font-mono)" font-size="10.5" fill="var(--tweak)">sender_name</text>
+
+        <!-- Chroma DB (vector store) -->
+        <rect x="385" y="300" width="160" height="76" rx="10" fill="var(--surface)" stroke="var(--line)" stroke-width="1.3"></rect>
+        <text x="465" y="332" text-anchor="middle" font-family="var(--font-head)" font-size="13.5" font-weight="700" fill="var(--ink)">Chroma DB</text>
+        <text x="465" y="349" text-anchor="middle" font-family="var(--font-mono)" font-size="10" fill="var(--ink-soft)">busca: "chroma"</text>
+        <text x="465" y="364" text-anchor="middle" font-family="var(--font-mono)" font-size="10" fill="var(--ink-soft)">search_query</text>
+
+        <!-- Parser: extracts text from Chroma's Data results (the fix) -->
+        <rect x="580" y="300" width="130" height="76" rx="10" fill="var(--surface)" stroke="var(--line)" stroke-width="1.3"></rect>
+        <text x="645" y="332" text-anchor="middle" font-family="var(--font-head)" font-size="13.5" font-weight="700" fill="var(--ink)">Parser</text>
+        <text x="645" y="349" text-anchor="middle" font-family="var(--font-mono)" font-size="10" fill="var(--ink-soft)">Text: {text}</text>
+        <text x="645" y="364" text-anchor="middle" font-family="var(--font-mono)" font-size="9.5" fill="var(--ink-faint)">não {content}</text>
+
+        <!-- ghost/local alt behind Language Model -->
+        <rect x="960" y="310" width="160" height="76" rx="10" fill="none" stroke="var(--line)" stroke-width="1.3" stroke-dasharray="4 4"></rect>
+
+        <!-- Prompt Template (tweak) -->
+        <rect x="745" y="300" width="170" height="76" rx="10" fill="var(--surface)" stroke="var(--tweak)" stroke-width="2"></rect>
+        <rect x="745" y="300" width="5" height="76" fill="var(--tweak)"></rect>
+        <text x="901" y="313" text-anchor="end" font-family="var(--font-mono)" font-size="9.5" fill="var(--tweak)" letter-spacing="0.03em">TWEAK</text>
+        <text x="830" y="332" text-anchor="middle" font-family="var(--font-head)" font-size="13" font-weight="700" fill="var(--ink)">Prompt Template</text>
+        <text x="830" y="349" text-anchor="middle" font-family="var(--font-mono)" font-size="10" fill="var(--ink-soft)">{context} {question}</text>
+        <text x="830" y="364" text-anchor="middle" font-family="var(--font-mono)" font-size="10" fill="var(--tweak)">idioma, tom_resposta</text>
+
+        <!-- Language Model / OpenRouter -->
+        <rect x="950" y="300" width="160" height="76" rx="10" fill="var(--surface)" stroke="var(--line)" stroke-width="1.3"></rect>
+        <text x="1030" y="329" text-anchor="middle" font-family="var(--font-head)" font-size="13.5" font-weight="700" fill="var(--ink)">Language Model</text>
+        <text x="1030" y="346" text-anchor="middle" font-family="var(--font-mono)" font-size="10" fill="var(--ink-soft)">ou componente "OpenRouter"</text>
+        <text x="1030" y="360" text-anchor="middle" font-family="var(--font-mono)" font-size="10" fill="var(--ink-soft)">(dedicado, sem base_url manual)</text>
+
+        <!-- Chat Output -->
+        <rect x="1145" y="300" width="140" height="76" rx="10" fill="var(--surface)" stroke="var(--line)" stroke-width="1.3"></rect>
+        <text x="1215" y="335" text-anchor="middle" font-family="var(--font-head)" font-size="13.5" font-weight="700" fill="var(--ink)">Chat Output</text>
+        <text x="1215" y="352" text-anchor="middle" font-family="var(--font-mono)" font-size="10.5" fill="var(--ink-soft)">outputs.message</text>
+
+        <!-- runtime arrows (labels sit above the row so they clear the tighter gaps) -->
+        <path d="M350,338 L383,338" stroke="var(--accent)" stroke-width="2" marker-end="url(#arrowFlow)"></path>
+        <text x="367" y="290" text-anchor="middle" font-family="var(--font-mono)" font-size="10" fill="var(--accent-ink)">mensagem (query)</text>
+
+        <path d="M545,338 L578,338" stroke="var(--accent)" stroke-width="2" marker-end="url(#arrowFlow)"></path>
+        <text x="562" y="290" text-anchor="middle" font-family="var(--font-mono)" font-size="10" fill="var(--accent-ink)">search_results</text>
+
+        <path d="M710,338 L743,338" stroke="var(--accent)" stroke-width="2" marker-end="url(#arrowFlow)"></path>
+        <text x="727" y="290" text-anchor="middle" font-family="var(--font-mono)" font-size="10" fill="var(--accent-ink)">contexto</text>
+
+        <path d="M915,338 L948,338" stroke="var(--accent)" stroke-width="2" marker-end="url(#arrowFlow)"></path>
+        <text x="932" y="290" text-anchor="middle" font-family="var(--font-mono)" font-size="10" fill="var(--accent-ink)">prompt final</text>
+
+        <path d="M1110,338 L1143,338" stroke="var(--accent)" stroke-width="2" marker-end="url(#arrowFlow)"></path>
+        <text x="1127" y="290" text-anchor="middle" font-family="var(--font-mono)" font-size="10" fill="var(--accent-ink)">resposta</text>
+
+        <!-- curved arrow: ChatInput -> Prompt Template (question) -->
+        <path d="M278,376 C278,460 830,460 830,376" fill="none" stroke="var(--accent)" stroke-width="1.6" marker-end="url(#arrowFlow)"></path>
+        <text x="553" y="480" text-anchor="middle" font-family="var(--font-mono)" font-size="10.5" fill="var(--accent-ink)">pergunta original → {question}</text>
+
+        <!-- local alt label -->
+        <text x="1215" y="410" text-anchor="middle" font-family="var(--font-mono)" font-size="10.5" fill="var(--ink-faint)">local/: Ollama (qwen3.5:7b) no lugar do Language Model</text>
+        <path d="M1120,386 C1120,405 1180,410 1210,410" fill="none" stroke="var(--ink-faint)" stroke-width="1.2" stroke-dasharray="3 3"></path>
+
+        <!-- external left caller -->
+        <rect x="10" y="298" width="130" height="80" rx="10" fill="var(--surface)" stroke="var(--ink-faint)" stroke-width="1.3"></rect>
+        <text x="75" y="330" text-anchor="middle" font-family="var(--font-mono)" font-size="10.5" fill="var(--ink)">nocode_integration.py</text>
+        <text x="75" y="346" text-anchor="middle" font-family="var(--font-mono)" font-size="10.5" fill="var(--ink-soft)">run_flow(message,</text>
+        <text x="75" y="360" text-anchor="middle" font-family="var(--font-mono)" font-size="10.5" fill="var(--ink-soft)">tweaks)</text>
+        <path d="M140,338 L198,338" stroke="var(--ink-faint)" stroke-width="1.5" marker-end="url(#arrowMuted)"></path>
+        <text x="168" y="312" text-anchor="middle" font-family="var(--font-mono)" font-size="9" fill="var(--ink-faint)">POST /api/v1/run</text>
+
+        <!-- external right consumer -->
+        <rect x="1360" y="298" width="130" height="80" rx="10" fill="var(--surface)" stroke="var(--ink-faint)" stroke-width="1.3"></rect>
+        <text x="1425" y="333" text-anchor="middle" font-family="var(--font-mono)" font-size="10.5" fill="var(--ink)">run_flow()</text>
+        <text x="1425" y="349" text-anchor="middle" font-family="var(--font-mono)" font-size="10.5" fill="var(--ink-soft)">retorna dict</text>
+        <text x="1425" y="363" text-anchor="middle" font-family="var(--font-mono)" font-size="10.5" fill="var(--ink-soft)">(outputs)</text>
+        <path d="M1285,338 L1358,338" stroke="var(--ink-faint)" stroke-width="1.5" marker-end="url(#arrowMuted)"></path>
+        <text x="1321" y="312" text-anchor="middle" font-family="var(--font-mono)" font-size="9" fill="var(--ink-faint)">HTTP 200</text>
+      </svg>
+    </figure>
+  </div>
+  <div class="legend-row">
+    <span><span class="swatch solid"></span>caminho de dados por requisição</span>
+    <span><span class="swatch dashed"></span>indexação (offline) / limite do servidor</span>
+    <span><span class="swatch tweak"></span>nó com campo sobrescrevível via <code>tweaks</code> na API</span>
+  </div>
+  <p class="dek" style="margin:0 0 8px;font-size:14.5px;">
+    Dois caminhos compartilham o mesmo <b style="color:var(--ink)">Chroma DB</b>: a indexação (topo, tracejada) escreve os
+    chunks da base de FAQ uma vez; a conversa (linha central, sólida) lê dele a cada mensagem. O <b style="color:var(--ink)">Prompt
+    Template</b> recebe tanto o contexto recuperado quanto a pergunta original do <b style="color:var(--ink)">Chat Input</b> — sem
+    essa segunda seta, o modelo veria só os trechos da FAQ, sem saber o que o usuário perguntou.
+  </p>
+  <p class="dek" style="margin:0 0 8px;font-size:13px;">
+    <b style="color:var(--tweak)">Nota de nomenclatura</b>: o Langflow não tem uma categoria fixa "Vector Store" na barra
+    lateral — <b style="color:var(--ink)">Chroma DB</b> é seu próprio componente (achado buscando "chroma"), e o
+    agrupamento visual varia por versão. Nomes conferidos direto na instância local via <code>GET /api/v1/all</code>
+    (Langflow 1.11.2).
+  </p>
+  <p class="dek" style="margin:0 0 8px;font-size:13px;">
+    <b style="color:var(--ink)">Por que o Parser existe</b>: o <code>Chroma DB</code> devolve cada resultado como um
+    objeto <code>Data</code> com o texto na chave <code>text</code> — não é uma string pronta. O template do
+    <code>Parser</code> tem que ler <code>{text}</code>; um template com <code>{content}</code> (chave que não existe
+    nesse objeto) compila sem erro nenhum, mas produz um texto vazio — o <code>Agent</code> roda normalmente e responde
+    algo como "não foi fornecido contexto", sem nenhum log de erro para achar o problema. Foi exatamente isso que
+    aconteceu na primeira versão deste fluxo; corrigido e testado via <code>POST /api/v1/run</code>.
+  </p>
+  <p class="dek" style="margin:0;font-size:13px;">
+    <b style="color:var(--ink)">Por que 3000, não 500</b>: o <code>Embedding Model</code> deste componente só aceita
+    <b>OpenAI</b>, <b>Google Generative AI</b> ou <b>Ollama</b> — Hugging Face não é uma opção aqui, ao contrário do
+    padrão de embeddings locais usado no resto do livro. Com <b>Google</b> (<code>gemini-embedding-2</code>, grátis via
+    Google AI Studio), enviar mais de ~2 chunks no mesmo request de indexação faz a API devolver menos embeddings do
+    que textos enviados — um <code>IndexError</code> dentro do <code>langchain-chroma</code>. Como o FAQ inteiro cabe
+    em ~2KB, um <code>chunk_size</code> de 3000 garante um chunk só, evitando o lote. Não escala para uma base maior
+    sem trocar de provedor.
+  </p>
+</section>
+
+<section>
+  <h2><span class="idx">02</span>Componentes</h2>
+  <div class="table-scroll">
+  <table>
+    <thead>
+      <tr><th>Nó</th><th>Nome real na barra lateral</th><th>Categoria</th><th>Config chave</th><th>Tweak via API</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b>Chat Input</b></td>
+        <td class="mono">"Chat Input"</td>
+        <td class="mono">Input / Output</td>
+        <td class="mono">recebe <code>input_value</code> do payload</td>
+        <td class="tag"><span class="pill tweak">sender_name</span></td>
+      </tr>
+      <tr>
+        <td>Read File</td>
+        <td class="mono">"Read File"</td>
+        <td class="mono">Files &amp; Knowledge</td>
+        <td class="mono">carrega o(s) doc(s) de FAQ de atendimento</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Split Text</td>
+        <td class="mono">"Split Text"</td>
+        <td class="mono">Processing</td>
+        <td class="mono">chunk_size=3000, chunk_overlap=200 (ver nota abaixo do diagrama)</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Embedding Model</td>
+        <td class="mono">"Embedding Model"</td>
+        <td class="mono">Models &amp; Agents</td>
+        <td class="mono">só OpenAI / Google Generative AI / Ollama — configurado: Google <code>gemini-embedding-2</code></td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Chroma DB</td>
+        <td class="mono">"Chroma DB" (busque "chroma")</td>
+        <td class="mono">bundle próprio, não "Vector Store"</td>
+        <td class="mono">persist_directory · search_query · number_of_results</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Parser</td>
+        <td class="mono">"Parser"</td>
+        <td class="mono">Processing</td>
+        <td class="mono">template <code>Text: {text}</code> — a chave é <code>text</code>, não <code>content</code></td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td><b>Prompt Template</b></td>
+        <td class="mono">"Prompt Template"</td>
+        <td class="mono">Models &amp; Agents</td>
+        <td class="mono">template com <code>{context}</code>, <code>{question}</code>, <code>{idioma}</code>, <code>{tom_resposta}</code></td>
+        <td class="tag"><span class="pill tweak">idioma</span> <span class="pill tweak">tom_resposta</span></td>
+      </tr>
+      <tr>
+        <td>Language Model</td>
+        <td class="mono">"Language Model" ou "OpenRouter"</td>
+        <td class="mono">Models &amp; Agents / bundle OpenRouter</td>
+        <td class="mono">OpenRouter: já traz api_key/model_name prontos, sem base_url manual</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Chat Output</td>
+        <td class="mono">"Chat Output"</td>
+        <td class="mono">Input / Output</td>
+        <td class="mono">expõe <code>outputs[].message</code> na resposta da API</td>
+        <td>—</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section>
+  <h2><span class="idx">03</span>Tweaks — o que <code>ex01_multiplas_entradas</code> sobrescreve</h2>
+  <p class="dek" style="font-size:14.5px;margin:0 0 12px;">
+    Os IDs abaixo (<code>ChatInput-xxxx</code>, <code>PromptTemplate-xxxx</code>) são placeholders — o Langflow gera um
+    sufixo aleatório por nó, e o prefixo pode não bater exatamente com o nome exibido. Pegue os IDs reais na aba
+    <b style="color:var(--ink)">API</b> do fluxo depois de montado, e cole em <code>build_tweaks()</code> no gabarito do
+    exercício 1.
+  </p>
+  <pre>{
+  <span class="k">"input_value"</span>: <span class="s">"Quero trocar um produto"</span>,
+  <span class="k">"output_type"</span>: <span class="s">"chat"</span>,
+  <span class="k">"input_type"</span>: <span class="s">"chat"</span>,
+  <span class="k">"tweaks"</span>: {
+    <span class="k">"ChatInput-xxxx"</span>:     { <span class="k">"sender_name"</span>: <span class="s">"Ana"</span> },
+    <span class="k">"PromptTemplate-xxxx"</span>: { <span class="k">"idioma"</span>: <span class="s">"português"</span>, <span class="k">"tom_resposta"</span>: <span class="s">"formal"</span> }
+  }
+}</pre>
+</section>
+
+<section>
+  <h2><span class="idx">04</span>Montagem — passo a passo</h2>
+  <ol class="steps">
+    <li>Suba o Langflow com <code>LANGFLOW_SUPERUSER</code>/<code>LANGFLOW_SUPERUSER_PASSWORD</code> definidos (ver README atualizado) e abra <code>http://localhost:7860</code>.</li>
+    <li>Novo flow em branco. Não existe categoria "Vector Store" na barra lateral — <b>use a busca</b>. Arraste <b>Read File</b> → <b>Split Text</b> → <b>Embedding Model</b> → <b>Chroma DB</b> (busque "chroma"; há duas opções, use a chamada exatamente "Chroma DB").</li>
+    <li>No <b>Embedding Model</b>, só dá pra escolher <b>OpenAI</b>, <b>Google Generative AI</b> ou <b>Ollama</b> (Hugging Face não aparece aqui). Free: Google — pegue uma chave em <a href="https://aistudio.google.com/apikey">aistudio.google.com/apikey</a>, adicione como variável global <code>GOOGLE_API_KEY</code> em Settings → Global Variables e escolha o modelo de embedding não-depreciado. No <b>Split Text</b>, use <code>Chunk Size</code> alto o bastante pra base inteira virar 1-2 chunks (ex.: <code>3000</code> para um FAQ de ~2KB) — o Google devolve menos embeddings do que textos quando manda 3+ de uma vez no mesmo request, e o Langflow não expõe controle de batch size pra contornar isso. Depois, rode ▶ no <b>Chroma DB</b> para indexar.</li>
+    <li>Adicione <b>Chat Input</b>, conecte sua saída ao campo <code>search_query</code> do <b>Chroma DB</b> e também direto ao <b>Prompt Template</b> como <code>{question}</code>.</li>
+    <li>Ligue a saída do <b>Chroma DB</b> a um <b>Parser</b> (não direto ao Prompt Template — o Chroma devolve objetos <code>Data</code>, não texto puro). No template do Parser, use <code>Text: {text}</code> — a chave é <code>text</code>, não <code>content</code>; um template com a chave errada não dá erro nenhum, só produz contexto vazio silenciosamente.</li>
+    <li>Ligue a saída do <b>Parser</b> ao <b>Prompt Template</b> como <code>{context}</code>. No template, declare também as variáveis <code>{idioma}</code> e <code>{tom_resposta}</code> com um valor default.</li>
+    <li><b>Prompt Template → Language Model → Chat Output</b>. Mais simples: use o componente dedicado <b>OpenRouter</b> (busque "openrouter") — já vem com <code>api_key</code>/<code>model_name</code> prontos. Se usar o "Language Model" genérico, selecione provedor OpenAI e preencha <code>base_url</code>/<code>api_key</code> na mão.</li>
+    <li>Aba <b>API</b> → copie o <code>FLOW_ID</code> e os IDs de <code>ChatInput-xxxx</code>/<code>PromptTemplate-xxxx</code> (confira o prefixo exato, pode variar) para o <code>.env</code> e para <code>build_tweaks()</code> (exercício 1).</li>
+    <li>Exporte (botão <i>Export</i>) e salve como <code>cap_10/langflow_rag_flow.json</code>.</li>
+  </ol>
+</section>
+
+<footer>
+  cap_10 · Módulo 11 · gerado a partir de projeto/nocode_integration.py, exercicios/ex01_multiplas_entradas_solucao.py e exercicios/ex03_orquestracao_fallback_solucao.py · componentes, config e os dois bugs (Parser {content} vs {text}; batch de embedding do Google) conferidos rodando o fluxo de ponta a ponta via POST /api/v1/run e GET /api/v1/monitor/builds na instância local (Langflow 1.11.2)
+</footer>
+
+</div>
+</body>
+</html>
