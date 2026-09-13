@@ -216,3 +216,29 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Credenciais e arquivos de ambiente locais
+.env.*
+!.env.example
+!.env.template
+.secrets/
+secrets/
+credentials*.json
+service-account*.json
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Dados e artefatos locais de execução
+*.sqlite3
+*.db
+logs/
+outputs/
+artifacts/
+
+# Configurações locais de editor e sistema operacional
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
